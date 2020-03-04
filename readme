@@ -1,0 +1,75 @@
+Teams should keep in mind the following guidelines when solving the problem and developing their solution.
+     a. Summary Sheet: The summary is an essential part of your MCM/ICM paper and should appear as the first page of your solution report. 
+	 The judges place considerable weight on the summary, and winning papers are often distinguished from other papers based on the quality of the summary. 
+          • To write a good summary, imagine that a reader will choose whether to read the body of the paper based on your summary: 
+		  Your concise presentation in the summary should inspire a reader to learn about the details of your work.
+          • You should write the summary last, as it should clearly describe your approach to the problem and, most prominently, 
+		  your most important conclusions. Ensure you plan time after solving your problem to write a comprehensive and articulate summary.
+          • Summaries that are mere restatements of the contest problem, or are a cut-and-paste boilerplate from the Introduction are generally considered to be weak.
+     b. Overall: The team’s solution should be articulate, concise, and organized in order to allow the reader to easily follow the solution process and conclusions. 
+	 Key statements should present major ideas and results.
+          • A Table of Contents assists the reader in previewing the organization of your report.
+          • Present a clarification or restatement of the problem as appropriate.
+          • Present a clear exposition of all variables and hypotheses.
+          • State and justify reasonable assumptions that bear on the problem.
+          • Present an analysis of the problem, motivating or justifying the model being used.
+          • Summarize derivations, computations, or illustrative examples in the main body of the solution, 
+		  and leave lengthy derivations and/or calculations and data in appropriate appendices.
+          • Include a design of the model. Discuss how the model could be tested, to include error analysis, sensitivity, and/or stability.
+          • Discuss any apparent strengths or weaknesses to your model or approach.
+          • Provide a conclusion and report results explicitly.
+          • Document resources and references.
+		  
+团队在解决问题和制定解决方案时应牢记以下准则。
+     a.摘要表：摘要是MCM / ICM论文的重要组成部分，应显示在解决方案报告的第一页。评委们对摘要的重视程度很高，获奖论文通常根据摘要的质量与其他论文区分开。单击此处下载Microsoft Word摘要表。
+          •要写出良好的摘要，请想象读者会根据您的摘要选择是否阅读论文的正文：摘要中的简洁表述应能激发读者了解您工作的细节。
+          •您应该最后写摘要，因为它应该【清楚地描述您解决问题的方法以及最重要的结论】。在解决问题后，请确保您计划好时间以撰写全面而明确的摘要。
+          •仅仅是竞赛问题的重述，或者是引言中的剪切粘贴样板的摘要通常被认为是较弱的。
+     b.总体而言：团队的解决方案应清晰，简洁且井井有条，以便读者轻松遵循解决方案的过程和结论。关键声明应提出主要思想和结果。
+          •【目录】可帮助读者预览报告的组织。
+          •对【问题进行澄清或重述】。
+          •清晰【阐明所有变量和假设】。
+          •陈述并证明涉及该问题的【合理假设】。
+          •对问题进行分析，激发或【证明所使用的模型】。
+          •在解决方案的主体中汇总派生，【计算或说明性示例】，并在适当的【附录中保留冗长的派生和/或计算和数据】。
+          •包括【模型的设计】。讨论如何【测试模型，以包括误差分析，灵敏度和/或稳定性】。
+          •讨论您的模型或方法的任何明显【优点或缺点】。
+          •提供【结论】并明确报告结果。
+          •文档资源和【参考】。
+
+
+【Summary】 (one page including team number)
+【1 Introduction】
+a.	problem background
+b.	restatement of the problem
+c.	overview of our work
+or a. problem restatement
+b. problem analysis
+
+【2 Assumptions and Justifications】
+【3 Notations】
+(General assumption (including symbols and their meanings))
+
+【4 Model Design】
+
+......
+
+【5 Sensitivity Analysis灵敏性分析】
+a.	the impact of ... on ...
+b.	...
+
+【6 Model Evaluation and further discussion】
+a.	evaluation of models
+b.	further discussion
+or a.strengths and weakness
+b.future improvements
+
+【7 a letter to …】
+(7 conclusion)
+
+【8 references】
+
+【9 appendices】
+a.	plots补充图
+b.	codes (listing 1.2…)
+
