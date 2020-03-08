@@ -32,11 +32,15 @@ just
 m
 me
 my
+not
+no
 of
 on
 or
+our
 s
 she
+so
 t
 than
 that
@@ -47,7 +51,9 @@ this
 to
 up
 ve
+very
 was
+we
 when
 with
 would
