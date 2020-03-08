@@ -33,9 +33,9 @@ def score(prob):
 def table_head():
     title = "word, "
     for i in range(5):
-        title += "frequency in " + str(i + 1) + ", "
+        title += "freq " + str(i + 1) + ", "
     for i in range(5):
-        title += "probability in " + str(i + 1) + ", "
+        title += "prob " + str(i + 1) + ", "
     title += "score"
     return title
 

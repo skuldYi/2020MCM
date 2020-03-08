@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3ef39d74-d8fa-4c16-b4e4-1bfbc6518566" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/wordStatistic.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/wordStatistic.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordStatistic.exe" beforeDir="false" afterPath="$PROJECT_DIR$/wordStatistic.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordStatistic.o" beforeDir="false" afterPath="$PROJECT_DIR$/wordStatistic.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dryer/statistic.py" beforeDir="false" afterPath="$PROJECT_DIR$/dryer/statistic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dryer/testout.csv" beforeDir="false" afterPath="$PROJECT_DIR$/dryer/testout.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dryer/testout.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/dryer/testout.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mcmthesis/mcmthesis-demo.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../mcmthesis/mcmthesis-demo.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mcmthesis/mcmthesis-demo.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../mcmthesis/mcmthesis-demo.tex" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,6 +19,7 @@
     <session id="-1794383590">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="1" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.opened" value="1" />
         </counts>
@@ -23,23 +27,23 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="out" value="1" />
-          <entry key="py" value="1" />
+          <entry key="py" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Python" value="1" />
+          <entry key="Python" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="1381" />
+          <entry key="py" value="1817" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="1381" />
+          <entry key="Python" value="1817" />
         </counts>
       </usages-collector>
     </session>
@@ -47,19 +51,25 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/dryer/statistic.py">
+        <entry file="file://$PROJECT_DIR$/dryer/score.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="490">
-              <caret line="52" selection-start-line="52" selection-end-line="52" />
+            <state relative-caret-position="209">
+              <caret line="11" selection-start-line="11" selection-end-line="11" />
               <folding>
-                <marker date="1583667805533" expanded="true" signature="74:75" ph="..." />
-                <marker date="1583667805533" expanded="true" signature="711:927" ph="..." />
+                <element signature="e#0#19#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -68,15 +78,18 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/dryer/statistic.py" />
+        <option value="$PROJECT_DIR$/dryer/score.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="917" />
     <option name="width" value="939" />
     <option name="height" value="1087" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -88,6 +101,11 @@
             <path>
               <item name="code" type="b2602c69:ProjectViewProjectNode" />
               <item name="code" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="code" type="b2602c69:ProjectViewProjectNode" />
+              <item name="code" type="462c0819:PsiDirectoryNode" />
+              <item name="dryer" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -112,7 +130,28 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.score">
+    <configuration name="score" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="code" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/dryer" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dryer/score.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="statistic" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="code" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -134,8 +173,13 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python.statistic" />
+      <item itemvalue="Python.score" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.score" />
         <item itemvalue="Python.statistic" />
       </list>
     </recent_temporary>
@@ -154,11 +198,11 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="917" y="0" width="939" height="1087" extended-state="1" />
+    <frame x="-8" y="-8" width="1865" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12985572" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.06403941" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Version Control" />
       <window_info anchor="bottom" id="Python Console" />
@@ -166,7 +210,7 @@
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3329832" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3298647" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -187,11 +231,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dryer/statistic.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="490">
-          <caret line="52" selection-start-line="52" selection-end-line="52" />
+        <state relative-caret-position="171">
+          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
           <folding>
-            <marker date="1583667805533" expanded="true" signature="74:75" ph="..." />
-            <marker date="1583667805533" expanded="true" signature="711:927" ph="..." />
+            <marker date="1583671143456" expanded="true" signature="74:75" ph="..." />
+            <marker date="1583671143456" expanded="true" signature="711:909" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dryer/score.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
           </folding>
         </state>
       </provider>
