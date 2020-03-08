@@ -59,14 +59,55 @@
 
 \section{Introduction}
 \subsection{Background}
-In recent years, more and more customers choose to shop online for its less space-time limitation and the convinent home delivery service. However, compared to the traditional physical stores, customers can only assess products by the privided profile and pictures instead of seeing the real ones. The information gap here is one of the main causes of dissatisfied purchases. To help comsumers know the product better, many online marketplace platforms, such as Amazon, introduce "review system". Customers are provided with an opportunity to express their level of satisfaction and further opinions or information about the products they have bought through rating and reviewing. Those additional information can assist other customers' purchasing decision. Meanwhile, it also help companies to gain insights into the market they participate and improve their product design.
-
-But we found that not all reviews are equally relevant. Some reviews are too general; some people's ratings don’t match their reviews; there are even deliberately misleading reviews, such as malicious defamation from competitors or the praise by the bribed reviewers. Therefore, when using data to assist business decisions, we need to analyze data carefully and comprehensively to obtain more accurate results. More factors should be considered, such as the ratings, review contents and review time, rather than simply  calculate the average rating level.
+In recent years, quantities of customers prefer to shopping online for its less spacetime limitation and the convenient home delivery service. However, compared to the traditional physical stores, customers can only evaluate products by the provided profile and pictures instead of seeing or testing the real ones. The information gap here is one of the leading causes of dissatisfied purchases. To help customers know the product better, many online marketplace platforms, such as Amazon, launch a "review system". Customers can express their level of satisfaction and further opinions or information about purchases through rating and reviewing. That additional information can help not only other customers make purchasing decisions, but companies improve the pros and cons of product design.
+\\\\
+However, we found that not all reviews are equally relevant. Some reviews are too general; some people's ratings do not match their reviews; there are even deliberately misleading reviews, such as malicious defamation from competitors or the raise by the bribed reviewers. Therefore, when using data to assist business decisions, we need to analyze data carefully and comprehensively to obtain more accurate results. More factors should be considered, such as the ratings, review contents and review time, rather than straightly calculate the average rating level.
 \subsection{Problem Restatement}
+Analyze the three product data sets to describe quantitative and/or qualitative patterns, relationships that help evaluate a product's star ratings, reviews and helpfulness ratings. Use data to demonstrate that they are valuable.
+\\\\
+Solve the following issues through modelling:
+
+- Determine the most informative metric based on ratings and reviews. This metric can track the product ratings of three products when they are on the market.
+
+- Analyze the relationship between product ratings and time in three data sets.
+
+- Look for critical factors that can affect the inflexion point of product ratings through time.
+
+- Analyze whether there will be more a series of positive or negative reviews over a while and whether customer star ratings will be affected by recent reviews.
+
+- Whether star rating and the keyword of review content match.
 \subsection{Data Source}
 Our model is informed by the customer-supplied ratings and reviews for microwave ovens, baby pacifiers, and hair dryers sold in the Amazon marketplace over more than 10 years.
 
 \section{Assumptions}
+\begin{itemize}
+  \item Merchant's purpose: Guide users to buy products with quality reviews and recent reviews.
+\end{itemize}
+\begin{itemize}
+  \item The content of the review and the star rating should be the same. People believe in reviews when review content is inconsistent with star ratings.
+
+Reason: Based on popular psychology, real language is convincing 
+\end{itemize}
+\begin{itemize}
+  \item Amazon Vine members' reviews are credible, excluding subjective factors that give high ratings for free products
+
+Reason: Big data select Amazon Vine members. Their evaluations are more objective and practical.
+\end{itemize}
+\begin{itemize}
+  \item Actual purchasers' reviews are credible.
+
+Reason: People who have already experienced the product know more about the actual performance of the product.
+\end{itemize}
+\begin{itemize}
+  \item Comments from actual non-purchasers are untrustworthy.
+
+Reason: We listed the distribution of 1-5 stars between the non-purchasers and the purchasers. It shows that the non-purchasers give more 1 star than purchasers, which may mislead the reviews.
+
+- fig1+2
+\end{itemize}
+\begin{itemize}
+  \item The impact of the same purchaser on reviews is not taken into consideration; that is, each evaluation behaviour of the purchaser is independent and not related to the previous reviews.
+\end{itemize}
 \begin{itemize}
   \item 
 \end{itemize}
