@@ -123,7 +123,8 @@ void statistic(const char* inFile, const char* outFile) {
 	{
 	 	/*为保证统计有意义,对统计数据输出进行调节*/
 	 	if((*wit).cnt*1.0/number_of_words>=0.05||((*wit).cnt>=2&&(*wit).cnt*100.0/number_of_words>=0.01)){
-	 	 	printf("%-5d\t%-16s\t%5d\t%17.3lf%%\n",wit-word_statistics.begin()+1,((*wit).str).c_str(),(*wit).cnt,(*wit).cnt*100.0/number_of_words);
+//	 	 	printf("%-5d\t%-16s\t%5d\t%17.3lf%%\n",wit-word_statistics.begin()+1,((*wit).str).c_str(),(*wit).cnt,(*wit).cnt*100.0/number_of_words);
+	 	 	printf("%d\t%s\t%d\t%.5lf\n",wit-word_statistics.begin()+1,((*wit).str).c_str(),(*wit).cnt,(*wit).cnt*100.0/number_of_words);
 	 	 	b=true;
 	 	}
 	}
@@ -131,7 +132,7 @@ void statistic(const char* inFile, const char* outFile) {
 
 	/*因统计数据输出调节引起的空输出提示*/
 	if(!b)printf("no appropriate word!\n");
-	printf("-----------------------------------------------\n");
+//	printf("-----------------------------------------------\n");
 
 
 	/*计算并输出统计程序消耗的时间*/
