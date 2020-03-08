@@ -4,46 +4,44 @@
 #include <algorithm>
 #include <cstdlib>
 #include <ctime>
-
+#include <string.h>
 
 using namespace std;
 #define MAX_LENGTH 1<<10//单词的最大长度
-
 
 typedef struct{
 	string str;
 	int cnt;
 }word;
 
-
 int number_of_words=0;//记录单词统计总数
 vector<string> virtual_word;//需要被除去的虚词集
 vector<string> raw_word;//资源文本中的单词集
 vector<word> word_statistics;//统计结果集
-
+const char* virtualFile = "virtual.txt";
 
 /*字典排序比较函数*/
 bool cmp_raw_word(const string &a,const string &b){return a<b;}
 
-
 /*词汇出现次数降序排序比较函数*/
 bool cmp_word_statistics(const word &a,const word &b){return a.cnt>b.cnt;}
-
 
 /*虚读取以处理资源文件以及虚词文件除大小写字母外的所有汉字及字符*/
 bool skip(){ scanf("%*[^a-z||A-Z]"); return true;}
 
+// main progress
+void statistic(const char* inFile, const char* outFile) {
 
-int main()
-{
+    number_of_words=0;
+    raw_word.clear();
+    word_statistics.clear();
+
 	/*初始化时间*/
-	clock_t start,finish;
-	double totaltime;
-	start=clock();
+	// clock_t start,finish;
+	// double totaltime;
+	// start=clock();
 
-
-	printf("Wait for a moment please.\n");
-
+	// printf("Wait for a moment please.\n");
 
 	/*定义缓存空间*/
 	word w;
@@ -55,7 +53,7 @@ int main()
 
 
 	/*重定向输入流至 virtual.txt 文件,读取 virtual.txt 文件所有英文单词*/
-	freopen("virtual.txt","r",stdin);
+	freopen(virtualFile,"r",stdin);
 	while(skip()&&scanf("%[a-zA-Z]",_word)!=EOF) virtual_word.push_back(_word);
 
 
@@ -64,22 +62,28 @@ int main()
 
 
 	/*重定向输入流至 in.txt 文件,并读取 in.txt 文件中所有英文单词*/
-	freopen("in.txt","r",stdin);
+	freopen(inFile,"r",stdin);
 	while(skip()&&scanf("%[a-zA-Z]",_word)!=EOF)
 	{
 	 	number_of_words++;
 	 	/*将只有首字母大写的单词的首字母转换成小写*/
-	 	if(_word[1]!='\0'&&isupper(_word[0])&&islower(_word[1])) _word[0]|=1<<5;
+	 	// if(_word[1]!='\0'&&isupper(_word[0])&&islower(_word[1])) _word[0]|=1<<5;
+		int i = 0;
+		while (_word[i] != '\0') {
+			_word[i] = tolower(_word[i]);
+			i++;
+		}
 	 	raw_word.push_back(_word);
 	}
 
 
 	/*重定向输出流至 out.txt 文件并输出相关说明信息*/
-	freopen("out.txt","w",stdout);
-	printf("-----------------------------------------------\n");
-	printf("%d words be counted! \nDetails are as follow:\n",number_of_words);
-	printf("no.\tword\ttime\tfrequency\n");
-	printf("-----------------------------------------------\n");
+	freopen(outFile,"w",stdout);
+	printf("%d\n", number_of_words);
+	// printf("-----------------------------------------------\n");
+	// printf("%d words be counted! \nDetails are as follow:\n",number_of_words);
+	// printf("no.\tword\ttime\tfrequency\n");
+	// printf("-----------------------------------------------\n");
 
 
 	/*若没有检测到输入时,结束程序并返回提示信息*/
@@ -87,7 +91,7 @@ int main()
 	{
 	 	printf("There is no word in the \"in.txt\" or \"in.txt\" inexistence!\n");
 	 	printf("-----------------------------------------------\n");
-	 	return 0;
+	 	return;
 	}
 
 
@@ -131,8 +135,21 @@ int main()
 
 
 	/*计算并输出统计程序消耗的时间*/
-	finish=clock();
-	totaltime=(double)(finish-start)/CLOCKS_PER_SEC;
-	printf("The program cost %.4lf second(s)",totaltime);
+	// finish=clock();
+	// totaltime=(double)(finish-start)/CLOCKS_PER_SEC;
+	// printf("The program cost %.4lf second(s)",totaltime);
+}
+
+int main()
+{
+	 const char* inFiles[] = {"1.in", "2.in", "3.in", "4.in", "5.in"};
+	 const char* outFiles[] = {"1.out", "2.out", "3.out", "4.out", "5.out"};
+
+	 for (int i = 0; i < 5; i++) {
+	 	statistic(inFiles[i], outFiles[i]);
+	 }
+
+//	statistic("5.in", "testout.txt");
+
 	return 0;
 }
