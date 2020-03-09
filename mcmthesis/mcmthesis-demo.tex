@@ -126,28 +126,26 @@ Reason: We listed the distribution of 1-5 stars between the non-purchasers and t
     \hline
     Symbol & Definition\\
     \hline
-    sr$_{i}$ & star rating of a review i\\
-    \hline
-	L$_{i}$ & review length of a review i\\
-    \hline
-	vh$_{i}$ & helpful votes of a review i\\
-    \hline
-	vt$_{i}$ & total votes of a review i\\
-    \hline
-	vm$_{i}$ & whether a review i is from an Amazon vine member: yes, vm$_{i}$=1; no, vm$_{i}$=0;\\
-    \hline
-	p$_{i}$ & whether a review i is from a verified purchaser: yes, p$_{i}$=1; no, p$_{i}$=0;\\
-    \hline
+    star$_{i}$ & star rating of a review i\\
+    
+	ER$_{i}$ & emtional rating of a review i\\
+    
+	d$_{i}$ & the variance between star rating and emtional rating of a review i\\
+
+	L$_{i}$ & length of a review i\\
+
+	Vm$_{i}$ & whether a review i is from an Amazon vine member\\
+    
 	Vr$_{i}$ & votes rating of a review i\\
-    \hline
-	Q$_{i}$ & review quality of a review i\\
-    \hline
-	Q & average review quality, can represent the review qualities in a certain time\\
-    \hline
-	R$_{i}$ & review rating of a review i\\
-    \hline
-	R & average review rating, can represent the product ratings in a certain time\\
-    \hline
+    
+	M$_{i}$ & rating of a review i\\
+
+	Q$_{i}$ & quality of a review i\\
+        
+	R$_{i}$ & synthesize evaluation of a review i\\
+   
+	R & average review synthesize evaluation\\
+    
 	t & time\\
 	\hline
   \end{tabular}
@@ -156,9 +154,9 @@ Reason: We listed the distribution of 1-5 stars between the non-purchasers and t
 
 \section{ Model Design }
 
-\section{ Part \uppercase\expandafter{\romannumeral1}:  }
+\section{ Part \uppercase\expandafter{\romannumeral1}:  Rating Model based on star-ratings and reviews}
 
-\section{ Part \uppercase\expandafter{\romannumeral2}:  }
+\section{ Part \uppercase\expandafter{\romannumeral2}:  Synthesize Evaluation Model}
 
 \section{Sensitivity Analysis}
 
