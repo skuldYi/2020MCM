@@ -341,34 +341,20 @@ We analyze the reviews of the three products by the LDA theme model. The extract
 
 Illustrated by graphs, the correlation coefficient between each star rating and the review score exceeds 0.8, which shows that their similarity is high. However, it can be seen that the similarity of the 3 stars is the lowest among the whole, because the reviews are ambiguous, which leads to a great variation between the star and review semantic recognition scores.
 
-
-\section{ Sensitivity Analysis }
-
 \section{ Strengths and Weaknesses }
 \subsection{Strengths}
 \begin{itemize}
-  \item \textbf{Applies widely}\\
-        This  system can be used for many types of airplanes, and it also
-        solves the interference during  the procedure of the boarding
-        airplane,as described above we can get to the  optimization
-        boarding time.We also know that all the service is automate.
-  \item \textbf{Improve the quality of the airport service}\\
-        Balancing the cost of the cost and the benefit, it will bring in
-        more convenient  for airport and passengers.It also saves many
-        human resources for the airline.
+  \item \textbf{Strong applicability}\\
+   Our model can efficiently analyze reviews of various types of products, and the differences can be adapted by adjusting parameters.
+  \item \textbf{Comprehensiveness}\\
+  Various factors are considered in the assumptions and model design.
 \end{itemize}
 
 \subsection{Weaknesses and Improvement}
 \begin{itemize}
   \item Due to the lack of sufficient data, the parameters used in the model are mainly obtained through actual life experience and repeated adjustment experiments. It would be profitable if we could get further data which can objectively reflect the quality of reviews or product quality, such as reviews with a more significant number of votes, or product sales data. By using these data, we are capable of performing a regression analysis on the model to obtain more accurate coefficients.
-\end{itemize}
-\begin{itemize}
   \item The LDA model has an excellent performance with document collection, while the majority of reviews are short in words. 
-\end{itemize}
-\begin{itemize}
   \item While major reviewers are not Amazon Vine Member, different people may have different criteria for evaluation, which may produce an objective assessment. We need to study every reviewers' rating habit to get a weight for every reviewer.
-\end{itemize}
-\begin{itemize}
   \item Removing the non-purchasers' reviews helps analysis the problem; however, these overt reviews may hurt the customers' purchasing decisions and further ratings.
 \end{itemize}
 
