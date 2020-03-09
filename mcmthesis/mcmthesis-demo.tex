@@ -126,7 +126,7 @@ Team \#2001560
 
 \end{memo}
 
-\section{ Introduction }
+\section{Introduction}
 \subsection{Background}
 In recent years, quantities of customers prefer shopping online for its less spacetime limitation and the convenient home delivery service. However, compared to the traditional physical stores, customers can only evaluate products by the provided profile and pictures instead of seeing or testing the real ones. The information gap here is one of the leading causes of dissatisfied purchases. To help customers know the product better, many online marketplace platforms, such as Amazon, launch a "review system". Customers can express their level of satisfaction and further opinions or information about purchases through rating and reviewing. That additional information can help not only other customers make purchasing decisions, but companies improve the pros and cons of product design.
 
@@ -148,7 +148,7 @@ Solve the following issues through modeling:
   \item Whether star rating and the keyword of review content match.
 \end{itemize}
 
-\subsection{ Data }
+\subsection{Data}
 \subsubsection{Data Source}
 Our model is informed by the customer-supplied ratings and reviews for microwave ovens, baby pacifiers, and hair dryers sold in the Amazon marketplace over more than ten years.
 \subsubsection{Data Pre-processing}
@@ -165,7 +165,21 @@ We did the following to sanitize the data set:
 
 We remove the reviews which have not been verified because we consider that reviews from those who have not bought the product are unreliable. Besides, we find that those people commit a more low rating (1 star or two stars) than those are verified purchases. We speculate that slander from competitors may be one of the reasons for this phenomenon.
 
-\section{ Assumptions }
+\begin{figure}[h]
+  \small
+  \centering
+  \includegraphics[width=12cm]{notbuy-micro.png}
+  \caption{ratings for the microwave}
+\end{figure}
+
+\begin{figure}[h]
+  \small
+  \centering
+  \includegraphics[width=12cm]{notbuy-dryer.png}
+  \caption{ratings for the hair-dryer}
+\end{figure}
+
+\section{Assumptions}
 \begin{itemize}
   \item Merchant's purpose: Guide users to buy products with quality reviews and recent reviews.
 \end{itemize}
@@ -247,8 +261,8 @@ Reason: Amazon provides Amazon Vine members with free copies of the product. Hen
   \caption{variables and functions}
 \end{table}
 
-\section{ Model Design }
-\subsection{ Review content measure }
+\section{Model Design}
+\subsection{Review content measure}
 When a user evaluates a product, he will simultaneously commit a rating and a review. These two indicators together describe his satisfaction with the product. Therefore, we can consider that the positive degree of ratings and reviews posted together are highly positively correlated in general. However, for various reasons, exceptions may occur. For example, someone may give a rating that is inconsistent with his review because of an operation error; or someone may give a higher star rating because of habit or because of a bribe from the merchant, although they are not very satisfied with the product. Therefore, when analyzing the user's evaluation of the product, we think that we should consider the influence of the rating and the review comprehensively, rather than simply counting the rating.
 
 Because reviews are in the form of text, we need to process them first, to get a quantitative measure of user satisfaction with the product toward the review context. Reviews are generally too short for analysis using the LDA model, but we found that most of the reviews have apparent keywords. Therefore, we use the statistical method instead of NLP.
@@ -279,10 +293,10 @@ So we decided to take another strategy. On the one hand, when posting a comment,
 \]
 As a measure of the content of the review.
 
-\subsection{ Review quality measure}
+\subsection{Review quality measure}
 Using M$_{i}$, we can get a user's evaluation of the product. However, from the perspective of all reviews, each review has different reliability. In the data given, we believe that the following factors can reflect the credibility and accuracy of a review to some extent.
 
-\subsubsection{ Review votes rate}
+\subsubsection{Review votes rate}
 Although the amount of helpful vote data is not enough to be a criterion for the quality of comments, we can still consider that reviews with a higher voting rate are more helpful than those with a lower one. We quantify the votes rate as follows:
 \[
 Vr_{i} = \begin{cases}  
@@ -291,7 +305,7 @@ Vr_{i} = \begin{cases}
 \end{cases}
 \]
 
-\subsubsection{ Length of review}
+\subsubsection{Length of review}
 According to a study by Huang and Chen \cite{1}, the helpfulness of online review and its length has a significant positive correlation when the reviews are short enough (less than 144 words). As reviews get long, the correlation decreases. Meanwhile, the strengthening effect of review length on its helpfulness gradually decreases. Therefore, we choose to use a logarithmic function to characterize the impact of the reviews' length on its quality. Furthermore, when the length reaches a certain threshold, the review quality no longer increases. We quantify the length factor as follows:
 \[
 L_{i} =
@@ -312,7 +326,7 @@ Vm =
 \end{cases}
 \]
 
-\subsubsection{ Mismatch between ER and star}
+\subsubsection{Mismatch between ER and star}
 As we discussed earlier, there may be various reasons why the text of the review does not match the star rating given. We consider these reviews to be relatively unreliable, and the degree of bias is negatively related to the credibility of the reviews. We use the following formula to quantify the impact of review mismatch with star ratings on review quality:
 \[
 	d_{i}  = -|ER - star|
@@ -330,10 +344,35 @@ In summary, we got the final rating for a review:
  R_i = M_i \times Q_i
 \]
 
-\section{ Solution }
+\section{Solution}
+\subsection{Comprehensive rating}
 
-\subsection{a}
-\subsection{bcd}
+By building a review content rating model (M$_{i}$), we can quantify a review's rating on a product. The score takes into account star ratings and review text. The following examples compare M$_{i}$ ratings, ratings, and the origin review.
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{cccp{10cm}}
+    \hline
+    product & rate & M$_{i}$ & review\_body \\
+    \hline
+    microwave & 4 & 4.88 & Wonderful product. My first time using anything like this for microwave repair of burned areas. I was not sure if it would work, but to my surprise it exceeded my expections. I highly reccomend this product.\\
+
+    pacifier & 5 & 4.35 & Bought for my new nephew and its everyone's favorite. Came on time and its just a normal pacifier with a funny saying.\\
+
+    hair dryer & 5 & 4.76 & Excellent product!  Quick attention very well packed and fast! - It is powerful to my wife loves\\
+    \hline
+  \end{tabular}
+  \caption{examples for M$_{i}$ rating module}
+\end{table}
+
+\subsection{Reputation of the product}
+
+We use a comprehensive rating R to assess the reputation of a product over time.
+
+% picture
+
+It can be found from the figure that, after the first year, due to the increase of reviews, the comprehensive rating gradually stabilized from the shock and approached an average value, which represents the reputation of the product.
+
 \begin{figure}[h]
   \small
   \centering
@@ -365,7 +404,7 @@ We analyze the reviews of the three products by the LDA theme model. The extract
 
 Illustrated by graphs, the correlation coefficient between each star rating and the review score exceeds 0.8, which shows that their similarity is high. However, it can be seen that the similarity of the 3 stars is the lowest among the whole, because the reviews are ambiguous, which leads to a great variation between the star and review semantic recognition scores.
 
-\section{ Strengths and Weaknesses }
+\section{Strengths and Weaknesses}
 \subsection{Strengths}
 \begin{itemize}
   \item \textbf{Strong applicability}\\
