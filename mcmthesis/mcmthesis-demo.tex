@@ -159,6 +159,36 @@ We did the following to sanitize the data set:
   \item Remove some garbled character.
 \end{itemize}
 
+We remove the reviews which have not been verified because we consider that reviews from those who have not bought the product are unreliable. Besides, we find that those people commit a more low rating (1 star or two stars) than those are verified purchases. We speculate that slander from competitors may be one of the reasons for this phenomenon.
+
+% \begin{figure}[h]
+%   \centering
+%   \begin{minipage}[t]{0.48\textwidth}
+%   \centering
+%   \includegraphics[width=8cm]{notbuy-micro.png}
+%   \caption{ratings for the microwave}
+%   \end{minipage}
+%   \begin{minipage}[t]{0.48\textwidth}
+%   \centering
+%   \includegraphics[width=8cm]{notbuy-dryer.png}
+%   \caption{ratings for the hair-dryer}
+%   \end{minipage}
+%   \end{figure}
+
+\begin{figure}[h]
+  \small
+  \centering
+  \includegraphics[width=12cm]{notbuy-micro.png}
+  \caption{ratings for the microwave}
+\end{figure}
+
+\begin{figure}[h]
+  \small
+  \centering
+  \includegraphics[width=12cm]{notbuy-dryer.png}
+  \caption{ratings for the hair-dryer}
+\end{figure}
+
 \section{ Assumptions }
 \begin{itemize}
   \item Merchant's purpose: Guide users to buy products with quality reviews and recent reviews.
@@ -267,7 +297,7 @@ Vr_{i} = \begin{cases}
 \]
 
 \subsubsection{ Length of review}
-According to a study by Huang and Chen (reference link"A study of factors that contribute to online review helpfulness"), the helpfulness of online review and its length has a significant positive correlation when the reviews are short enough (less than 144 words). As reviews get long, the correlation decreases. Meanwhile, the strengthening effect of review length on its helpfulness gradually decreases. Therefore, we choose to use a logarithmic function to characterize the impact of the reviews' length on its quality. Furthermore, when the length reaches a certain threshold, the review quality no longer increases. We quantify the length factor as follows:
+According to a study by Huang and Chen \cite{1}, the helpfulness of online review and its length has a significant positive correlation when the reviews are short enough (less than 144 words). As reviews get long, the correlation decreases. Meanwhile, the strengthening effect of review length on its helpfulness gradually decreases. Therefore, we choose to use a logarithmic function to characterize the impact of the reviews' length on its quality. Furthermore, when the length reaches a certain threshold, the review quality no longer increases. We quantify the length factor as follows:
 \[
 L_{i} =
 \begin{cases}  
@@ -296,7 +326,7 @@ As we discussed earlier, there may be various reasons why the text of the review
 \subsubsection{Review quality measure}
 After comprehensively considering the above four factors and performing experiments and adjustments on the actual data, we have the following formula for calculating the quality of reviews:
 \[
-Q_i = 0.5 \times Vr_i + 0.5 \times L_i + 0.8 \times vm_i + 0.25 \times d + 1
+Q_i = 0.5 \times Vr_i + 0.5 \times L_i + 0.5 \times vm_i + 0.25 \times d + 1
 \]
 
 \subsection{Synthesize Evaluation Model}
@@ -306,6 +336,21 @@ In summary, we got the final rating for a review:
 \]
 
 \section{ Solution }
+
+\subsection{a}
+\subsection{bcd}
+\subsection{descriptors of text based reviews \& rating levels}
+We analyze the reviews of the three products by the LDA theme model. The extracted models are divided into five levels according to their emotional meanings, corresponding to 1-5 stars. For each review, the LDA model topic extraction is performed, and the corresponding star rating is calculated by weighting the topic proportion. The Pearson Correlation Coefficient between the star rating and the review score indicates correlation.
+
+\begin{figure}[h]
+  \small
+  \centering
+  \includegraphics[width=12cm]{2e.png}
+  \caption{correlation between rating and the review score}
+\end{figure}
+
+Illustrated by graphs, the correlation coefficient between each star rating and the review score exceeds 0.8, which shows that their similarity is high. However, it can be seen that the similarity of the 3 stars is the lowest among the whole, because the reviews are ambiguous, which leads to a great variation between the star and review semantic recognition scores.
+
 
 \section{ Sensitivity Analysis }
 
@@ -320,8 +365,9 @@ In summary, we got the final rating for a review:
   \item \textbf{Improve the quality of the airport service}\\
         Balancing the cost of the cost and the benefit, it will bring in
         more convenient  for airport and passengers.It also saves many
-        human resources for the airline. \item \textbf{}
+        human resources for the airline.
 \end{itemize}
+
 \subsection{Weaknesses and Improvement}
 \begin{itemize}
   \item Due to the lack of sufficient data, the parameters used in the model are mainly obtained through actual life experience and repeated adjustment experiments. It would be profitable if we could get further data which can objectively reflect the quality of reviews or product quality, such as reviews with a more significant number of votes, or product sales data. By using these data, we are capable of performing a regression analysis on the model to obtain more accurate coefficients.
@@ -336,7 +382,12 @@ In summary, we got the final rating for a review:
   \item Removing the non-purchasers' reviews helps analysis the problem; however, these overt reviews may hurt the customers' purchasing decisions and further ratings.
 \end{itemize}
 
-\section{Conclusions}
+%% References
+\begin{thebibliography}{99}
+  \bibitem{1} Albert H. Huang, Kuanchin Chen, David C. Yen, Trang P. Tran,
+  A study of factors that contribute to online review helpfulness,
+  Computers in Human Behavior, Volume 48, 2015, Pages 17-27,
+\end{thebibliography}
 
 \end{document}
 
