@@ -88,36 +88,63 @@ From here, begin your summary  % 摘要
 %% Generate the Memorandum, if it's needed.
 \memoto{Marketing Director of Sunshine Company}
 \memofrom{MCM Team \#2001560}
-\memosubject{Data Analysis Results}
+\memosubject{Special Online Sales Strategy for Sunshine Company}
 \memodate{\today}
 % \logo{\LARGE I'm pretending to be a LOGO!}
 \begin{memo}[Letter]
-  \lipsum[1]
+Dear Marketing Director,
+\\\\
+Thank you for your trust in our team. We have learned that you want to start with ratings and reviews and get some relevant parameters or metrics to quantify the reputation of the product, thereby increasing product attractiveness and sales. After a thorough study, we have built a model that analyze the synthesize evaluation of products to help you identify the reputation of the products and whether they are successful in the online market.
+\\\\
+After analyzing the data, we found that we cannot evaluate the quality and reputation of a product based on star ratings only. Because not only the star rating and the content of the review do not match well, there are some cases where non-purchasers make biased reviews of the product. These problematic stars and reviews can mislead customers, affect their shopping decisions, affect future review trends, and even damage product reputation.
+\\\\
+Firstly, we removed reviews from non-purchasers(Amazon Vine members are identified as purchasers) from the data, which minimizes the potential for malicious reviewers to damage the reputation of the product. 
+\\\\
+Then, we studied each review through TD-IDF (information retrieval and data mining technology) to analyze the term frequency and give each review a sentiment score, which indicates the actual semantics. By coefficient simulation, We found that there has a strong correlation between the stars and sentiment score while some are not fitting well, which shows that star rating and sentiment score both modify the quality of the product.
+\\\\
+We suppose there is a distinction between product reputation and product quality for various quality reviews can have diverse effects on product reputation. A single word 'Perfect' is inadequate, while a detailed description of the praise brings more forward message to the customer. Amazon Vine member reviews and reviews with high ratings are credible.We established a review quality score model to value the review. When the star rating and the sentiment score are similar, the quality is more top; when the star rating and the review sentiment score do not harmonize, the quality is lower.
+\\\\
+By synthesize evaluation model, we take word length, helpfulness rate, whether it is from a vine member and review quality score and sentiment score into consideration to define the synthesize evaluation score, which represents a product's reputation.
+\\\\
+When your products are on the online market, by examining the synthesize evaluation score over time, you can discern whether the products are potentially fruitful. Through analyzing the three types of products' synthesize evaluation score, we list several reasons for the changes in product reputation in a certain period. They assists you to pay attention to some particular breakpoints to optimize listing in time and improve the product reputation.
+\begin{itemize}
+	\item A specific review may incite customers to write positive or negative reviews. You need to have an eye on negative reviews and appropriately invite customers to write reviews that benefit the product reputation.
+
+	\item Poor overall review quality (inconsistent star ratings and review content) may cause product reputation to decline.
+
+	\item Inviting more Amazon Vine Members to write reviews can improve the product reputation.
+
+	\item When multiple bad reviews with high quality appear, not only estimating the negative impact of these reviews is necessary, but also pay attention to the shortcomings of products, and feedback these opinions to the design manufacturers to improve the products.
+\end{itemize}
+We sincerely hope that it will provide you with useful information. Wish very best wished for your job and your products!
+\\\\
+Team \#2001560
+
 \end{memo}
 
-\section{Introduction}
+\section{ Introduction }
 \subsection{Background}
-In recent years, quantities of customers prefer to shopping online for its less spacetime limitation and the convenient home delivery service. However, compared to the traditional physical stores, customers can only evaluate products by the provided profile and pictures instead of seeing or testing the real ones. The information gap here is one of the leading causes of dissatisfied purchases. To help customers know the product better, many online marketplace platforms, such as Amazon, launch a "review system". Customers can express their level of satisfaction and further opinions or information about purchases through rating and reviewing. That additional information can help not only other customers make purchasing decisions, but companies improve the pros and cons of product design.\\
+In recent years, quantities of customers prefer shopping online for its less spacetime limitation and the convenient home delivery service. However, compared to the traditional physical stores, customers can only evaluate products by the provided profile and pictures instead of seeing or testing the real ones. The information gap here is one of the leading causes of dissatisfied purchases. To help customers know the product better, many online marketplace platforms, such as Amazon, launch a "review system". Customers can express their level of satisfaction and further opinions or information about purchases through rating and reviewing. That additional information can help not only other customers make purchasing decisions, but companies improve the pros and cons of product design.\\
 
-However, we found that not all reviews are equally relevant. Some reviews are too general; some people's ratings do not match their reviews; there are even deliberately misleading reviews, such as malicious defamation from competitors or the raise by the bribed reviewers. Therefore, when using data to assist business decisions, we need to analyze data carefully and comprehensively to obtain more accurate results. More factors should be considered, such as the ratings, review contents and review time, rather than straightly calculate the average rating level.
+However, we found that not all reviews are equally relevant. Some reviews are too general; some people's ratings do not match their reviews; there are even deliberately misleading reviews, such as malicious defamation from competitors or the raise by the bribed reviewers. Therefore, when using data to assist business decisions, we need to analyze data carefully and comprehensively to obtain more accurate results. More factors should be considered, such as the ratings, review contents, and review time, rather than straightly calculate the average rating level.
 
 \subsection{Problem Restatement}
-Analyze the three product data sets to describe quantitative and/or qualitative patterns, relationships that help evaluate a product's star ratings, reviews and helpfulness ratings. Use data to demonstrate that they are valuable.\\
+Analyze the three product data sets to describe quantitative and/or qualitative patterns, relationships that help evaluate a product's star ratings, reviews, and helpfulness ratings. Use data to demonstrate that they are valuable.\\
 
-Solve the following issues through modelling:
+Solve the following issues through modeling:
 \begin{itemize}
   \item Determine the most informative metric based on ratings and reviews. This metric can track the product ratings of three products when they are on the market.
   
   \item Analyze the relationship between product ratings and time in three data sets.
   
-  \item Look for critical factors that can affect the inflexion point of product ratings through time.
+  \item Look for critical factors that can affect the inflection point of product ratings through time.
   
   \item Analyze whether there will be more a series of positive or negative reviews over a while and whether customer star ratings will be affected by recent reviews.
   
   \item Whether star rating and the keyword of review content match.
 \end{itemize}
 
-\subsection{Data}
+\subsection{ Data }
 \subsubsection{Data Source}
 Our model is informed by the customer-supplied ratings and reviews for microwave ovens, baby pacifiers, and hair dryers sold in the Amazon marketplace over more than ten years.
 \subsubsection{Data Pre-processing}
@@ -127,12 +154,12 @@ We did the following to sanitize the data set:
   
   \item Remove the redundant factors, such as review\_id and product\_id, for they can be completely replaced by customer\_id and product\_parent.
   
-  \item Remove factors that could mislead the model, such as verify\_purchase ==N.
+  \item Remove factors that could mislead the model, such as verify\_purchase==N while vine==N.
   
   \item Remove some garbled character.
 \end{itemize}
 
-\section{Assumptions}
+\section{ Assumptions }
 \begin{itemize}
   \item Merchant's purpose: Guide users to buy products with quality reviews and recent reviews.
 \end{itemize}
@@ -142,7 +169,7 @@ We did the following to sanitize the data set:
 Reason: Based on popular psychology, real language is convincing 
 \end{itemize}
 \begin{itemize}
-  \item Amazon Vine members' reviews are credible, excluding subjective factors that give high ratings for free products
+  \item Amazon Vine members' reviews are credible, excluding subjective factors that give high ratings for free products.
 
 Reason: Big data select Amazon Vine members. Their evaluations are more objective and practical.
 \end{itemize}
@@ -152,11 +179,11 @@ Reason: Big data select Amazon Vine members. Their evaluations are more objectiv
 Reason: People who have already experienced the product know more about the actual performance of the product.
 \end{itemize}
 \begin{itemize}
-  \item Comments from actual non-purchasers are untrustworthy.
+  \item Comments from actual non-purchasers (except Amazon Vine members) are untrustworthy.
 
-Reason: We listed the distribution of 1-5 stars between the non-purchasers and the purchasers. It shows that the non-purchasers give more 1 star than purchasers, which may mislead the reviews.
+Reason: Amazon provides Amazon Vine members with free copies of the product. Hence Amazon Vine members should be identified as purchasers. We listed the distribution of 1-5 stars between the non-purchasers and the purchasers. It shows that the non-purchasers give more 1 star than purchasers, which may mislead the reviews.
 
-- fig1+2
+- fig1+2 Compare the non-purchasers with the purchasers on star rating.
 \end{itemize}
 \begin{itemize}
   \item The impact of the same purchaser on reviews is not taken into consideration; that is, each evaluation behaviour of the purchaser is independent and not related to the previous reviews.
@@ -201,9 +228,11 @@ Reason: We listed the distribution of 1-5 stars between the non-purchasers and t
 
 \section{ Part \uppercase\expandafter{\romannumeral2}:  Synthesize Evaluation Model}
 
-\section{Sensitivity Analysis}
+\section{ Solution }
 
-\section{Strengths and Weaknesses}
+\section{ Sensitivity Analysis }
+
+\section{ Strengths and Weaknesses }
 \subsection{Strengths}
 \begin{itemize}
   \item \textbf{Applies widely}\\
@@ -218,7 +247,7 @@ Reason: We listed the distribution of 1-5 stars between the non-purchasers and t
 \end{itemize}
 \subsection{Weaknesses and Improvement}
 \begin{itemize}
-  \item The small dataset causes deviation of the model which build by either word frequency analysis or LDA.
+  \item Due to the lack of sufficient data, the parameters used in the model are mainly obtained through actual life experience and repeated adjustment experiments. It would be profitable if we could get further data which can objectively reflect the quality of reviews or product quality, such as reviews with a more significant number of votes, or product sales data. By using these data, we are capable of performing a regression analysis on the model to obtain more accurate coefficients.
 \end{itemize}
 \begin{itemize}
   \item The LDA model has an excellent performance with document collection, while the majority of reviews are short in words. 
@@ -227,7 +256,7 @@ Reason: We listed the distribution of 1-5 stars between the non-purchasers and t
   \item While major reviewers are not Amazon Vine Member, different people may have different criteria for evaluation, which may produce an objective assessment. We need to study every reviewers' rating habit to get a weight for every reviewer.
 \end{itemize}
 \begin{itemize}
-  \item Removing the non-purchasers' reviews helps analysis the problem; however, these misleading reviews may hurt the customers' purchasing decisions and further ratings.
+  \item Removing the non-purchasers' reviews helps analysis the problem; however, these overt reviews may hurt the customers' purchasing decisions and further ratings.
 \end{itemize}
 
 \section{Conclusions}
