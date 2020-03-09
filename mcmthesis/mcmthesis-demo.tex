@@ -62,10 +62,15 @@
 
 \vspace{2em}
 \begin{center}
-\Large\bf Title of you paper   % 论文标题
+\Large\bf Look Beyond The Data   % 论文标题
 \end{center}
 
-From here, begin your summary  % 摘要
+In online shopping platforms, such as Amazon, customers can post reviews to express their satisfaction with the product. These reviews can be used as a reference or other users when purchasing. They can also be analyzed and organized by the company as an essential basis for formulating sales strategies, improving products, or analyzing sales conditions. To help companies achieve this goal, we have designed and built relevant models for extracting useful information about market operations from product ratings and reviews.
+
+To make the results as accurate and credible as possible, we think that a review (including star rating and text content) can be considered from the following two aspects: 1) review content; 2) review quality. The content of the review should comprehensively consider the rating and the text review, to reduce misleading caused by misoperation or fake rating. To quantify the text content, we used the analysis method of word frequency statistics. For the quality of reviews, we comprehensively consider four factors: the length of the review, whether Vine, helpfulness votes, and the departure between stars and reviews to find more reliable reviews and assign higher weight to them in the analysis.
+
+Based on this model, the customer's overall evaluation of the product over a period of time can be regarded as the reputation of the product. We examine the changing trend of product reviews in the time dimension to obtain the change of the reputation of the product in the market, and by looking for and analyzing the turning point of this trend, we can predict the success of the product. Besides, by using the TF-IDF method to build an LDA model of the review content and analyze it, we also found that certain specific words are closely related to the rating level.
+We believe that our model can, to a certain extent, obtain the market's actual evaluation of the product from the reviews promptly. But this model has some disadvantages. Due to a lack of data, some parameters in the module were roughly determined through common sense or trial. If there is more data supported, our model may be more accurate.
 
 %%%%%%%%%%% End Summary %%%%%%%%%%%
 
@@ -116,20 +121,19 @@ When your products are on the online market, by examining the synthesize evaluat
 
 	\item When multiple bad reviews with high quality appear, not only estimating the negative impact of these reviews is necessary, but also pay attention to the shortcomings of products, and feedback these opinions to the design manufacturers to improve the products.
 \end{itemize}
-We sincerely hope that it will provide you with useful information. Wish very best wished for your job and your products!
-\\\\
+We sincerely hope that it will provide you with useful information. Wish very best wished for your job and your products!\\\\
 Team \#2001560
 
 \end{memo}
 
 \section{ Introduction }
 \subsection{Background}
-In recent years, quantities of customers prefer shopping online for its less spacetime limitation and the convenient home delivery service. However, compared to the traditional physical stores, customers can only evaluate products by the provided profile and pictures instead of seeing or testing the real ones. The information gap here is one of the leading causes of dissatisfied purchases. To help customers know the product better, many online marketplace platforms, such as Amazon, launch a "review system". Customers can express their level of satisfaction and further opinions or information about purchases through rating and reviewing. That additional information can help not only other customers make purchasing decisions, but companies improve the pros and cons of product design.\\
+In recent years, quantities of customers prefer shopping online for its less spacetime limitation and the convenient home delivery service. However, compared to the traditional physical stores, customers can only evaluate products by the provided profile and pictures instead of seeing or testing the real ones. The information gap here is one of the leading causes of dissatisfied purchases. To help customers know the product better, many online marketplace platforms, such as Amazon, launch a "review system". Customers can express their level of satisfaction and further opinions or information about purchases through rating and reviewing. That additional information can help not only other customers make purchasing decisions, but companies improve the pros and cons of product design.
 
 However, we found that not all reviews are equally relevant. Some reviews are too general; some people's ratings do not match their reviews; there are even deliberately misleading reviews, such as malicious defamation from competitors or the raise by the bribed reviewers. Therefore, when using data to assist business decisions, we need to analyze data carefully and comprehensively to obtain more accurate results. More factors should be considered, such as the ratings, review contents, and review time, rather than straightly calculate the average rating level.
 
 \subsection{Problem Restatement}
-Analyze the three product data sets to describe quantitative and/or qualitative patterns, relationships that help evaluate a product's star ratings, reviews, and helpfulness ratings. Use data to demonstrate that they are valuable.\\
+Analyze the three product data sets to describe quantitative and/or qualitative patterns, relationships that help evaluate a product's star ratings, reviews, and helpfulness ratings. Use data to demonstrate that they are valuable.
 
 Solve the following issues through modeling:
 \begin{itemize}
@@ -160,20 +164,6 @@ We did the following to sanitize the data set:
 \end{itemize}
 
 We remove the reviews which have not been verified because we consider that reviews from those who have not bought the product are unreliable. Besides, we find that those people commit a more low rating (1 star or two stars) than those are verified purchases. We speculate that slander from competitors may be one of the reasons for this phenomenon.
-
-% \begin{figure}[h]
-%   \centering
-%   \begin{minipage}[t]{0.48\textwidth}
-%   \centering
-%   \includegraphics[width=8cm]{notbuy-micro.png}
-%   \caption{ratings for the microwave}
-%   \end{minipage}
-%   \begin{minipage}[t]{0.48\textwidth}
-%   \centering
-%   \includegraphics[width=8cm]{notbuy-dryer.png}
-%   \caption{ratings for the hair-dryer}
-%   \end{minipage}
-%   \end{figure}
 
 \begin{figure}[h]
   \small
@@ -326,7 +316,7 @@ As we discussed earlier, there may be various reasons why the text of the review
 \subsubsection{Review quality measure}
 After comprehensively considering the above four factors and performing experiments and adjustments on the actual data, we have the following formula for calculating the quality of reviews:
 \[
-Q_i = 0.5 \times Vr_i + 0.5 \times L_i + 0.5 \times vm_i + 0.25 \times d + 1
+Q_i = 0.2 \times Vr_i + 0.2 \times L_i + 0.2 \times vm_i + 0.1 \times d + 1
 \]
 
 \subsection{Synthesize Evaluation Model}
