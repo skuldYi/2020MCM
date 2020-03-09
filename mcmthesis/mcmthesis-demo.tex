@@ -223,10 +223,87 @@ Reason: Amazon provides Amazon Vine members with free copies of the product. Hen
 \end{table}
 
 \section{ Model Design }
+\subsection{ Review content measure }
+When a user evaluates a product, he will simultaneously commit a rating and a review. These two indicators together describe his satisfaction with the product. Therefore, we can consider that the positive degree of ratings and reviews posted together are highly positively correlated in general. However, for various reasons, exceptions may occur. For example, someone may give a rating that is inconsistent with his review because of an operation error; or someone may give a higher star rating because of habit or because of a bribe from the merchant, although they are not very satisfied with the product. Therefore, when analyzing the user's evaluation of the product, we think that we should consider the influence of the rating and the review comprehensively, rather than simply counting the rating.
 
-\section{ Part \uppercase\expandafter{\romannumeral1}:  Rating Model based on star-ratings and reviews}
+Because reviews are in the form of text, we need to process them first, to get a quantitative measure of user satisfaction with the product toward the review context. Reviews are generally too short for analysis using the LDA model, but we found that most of the reviews have apparent keywords. Therefore, we use the statistical method instead of NLP.
 
-\section{ Part \uppercase\expandafter{\romannumeral2}:  Synthesize Evaluation Model}
+\begin{enumerate}
+\item Perform word frequency statistics on each rating level, respectively.
+\item Calculate the probability of each word appearing in different rating
+\item Filter out words that have practical meaning and have noticeable frequency differences in different ratings
+\item weighted them with the probability get a "rating" corresponding to a word
+\end{enumerate}
+
+In this way, we have a word-rating dictionary. Then in each review, we mark the above keywords and find the average rating of all keyword. Finally, according to the above algorithm, we got a review's "emotional rating" ER$_{i}$.
+Taking the hair-dryer as an example: the following chart show some of the data in the process.
+
+\begin{figure}[h]
+  \small
+  \centering
+  \includegraphics[width=12cm]{wordStatisticOfDryer.png}
+  \caption{word statistic} \label{fig:aa}
+\end{figure}
+
+Next, we need to get a measure M$_{i}$ of a review that considers star$_{i}$ and ER$_{i}$ comprehensively.
+According to our initial assumptions, if the difference between the rating and the review score is too large, it indicates that there may be some problem with this review, which can be of low reference value and should be ignored in statistics. However, from the existing data, there is not a very appropriate indicator for the measurement of the difference. Ideally, the "useful vote" of other users for reviews should be the best standard for measuring the quality and authenticity of reviews; a joint analysis can be used to find out the threshold of ignoring unreliable reviews. However, there is too little voting data for reviews in the provided data for effective analysis. 
+
+So we decided to take another strategy. On the one hand, when posting a comment, it only takes one click to give a star rating, but a paragraph of text is required to give a review. Obviously, the former has a higher probability of misoperation. On the other hand, reviews are more informative and detailed than review stars. From life experience, in the face of a mismatch between a star rating and a review, users are more willing to believe the latter. So after a series of attempts, we finally decided to use the formula
+\[
+	M_{i} = 0.7 \times ER_{i} + 0.3 \times star_{i}
+\]
+As a measure of the content of the review.
+
+\subsection{ Review quality measure}
+Using M$_{i}$, we can get a user's evaluation of the product. However, from the perspective of all reviews, each review has different reliability. In the data given, we believe that the following factors can reflect the credibility and accuracy of a review to some extent.
+
+\subsubsection{ Review votes rate}
+Although the amount of helpful vote data is not enough to be a criterion for the quality of comments, we can still consider that reviews with a higher voting rate are more helpful than those with a lower one. We quantify the votes rate as follows:
+\[
+Vr_{i} = \begin{cases}  
+\frac{helpful\_votes}{total\_votes}, & \text{if total\_votes > 0} \\
+0, & \text{if total\_votes = 0}
+\end{cases}
+\]
+
+\subsubsection{ Length of review}
+According to a study by Huang and Chen (reference link"A study of factors that contribute to online review helpfulness"), the helpfulness of online review and its length has a significant positive correlation when the reviews are short enough (less than 144 words). As reviews get long, the correlation decreases. Meanwhile, the strengthening effect of review length on its helpfulness gradually decreases. Therefore, we choose to use a logarithmic function to characterize the impact of the reviews' length on its quality. Furthermore, when the length reaches a certain threshold, the review quality no longer increases. We quantify the length factor as follows:
+\[
+L_{i} =
+\begin{cases}  
+	 lg (length), &\text{if lenth of review < 100 words} \\
+	2, &\text{else}
+\end{cases}
+\]
+
+\subsubsection{Amazon Vine Voice}
+Amazon Vine Voices are trusted users in the Amazon community for writing accurate and insightful reviews. So we can consider reviews made by them to be more accurate and reliable. The discrete variable vm$_{i}$ is used to characterize whether the customer who did this review is a Vine Voice:
+
+\[
+Vm = 
+\begin{cases}  
+	1, &\text{if vine = Y} \\
+	0, &\text{if vine = N}
+\end{cases}
+\]
+
+\subsubsection{ Mismatch between ER and star}
+As we discussed earlier, there may be various reasons why the text of the review does not match the star rating given. We consider these reviews to be relatively unreliable, and the degree of bias is negatively related to the credibility of the reviews. We use the following formula to quantify the impact of review mismatch with star ratings on review quality:
+\[
+	d_{i}  = -|ER - star|
+\]
+
+\subsubsection{Review quality measure}
+After comprehensively considering the above four factors and performing experiments and adjustments on the actual data, we have the following formula for calculating the quality of reviews:
+\[
+Q_i = 0.5 \times Vr_i + 0.5 \times L_i + 0.8 \times vm_i + 0.25 \times d + 1
+\]
+
+\subsection{Synthesize Evaluation Model}
+In summary, we got the final rating for a review:
+\[
+ R_i = M_i \times Q_i
+\]
 
 \section{ Solution }
 
@@ -261,53 +338,6 @@ Reason: Amazon provides Amazon Vine members with free copies of the product. Hen
 
 \section{Conclusions}
 
-\begin{figure}[h]
-  \small
-  \centering
-  \includegraphics[width=12cm]{mcmthesis-aaa.eps}
-  \caption{aa} \label{fig:aa}
-\end{figure}
-
-\lipsum[8] \eqref{aa}
-\begin{equation}
-  a^2 \label{aa}
-\end{equation}
-
-
-\[
-  p_{j}=\begin{cases} 0,              & \text{if $j$ is odd}  \\
-    r!\,(-1)^{j/2}, & \text{if $j$ is even}
-  \end{cases}
-\]
-
-%% References
-\begin{thebibliography}{99}
-  \bibitem{1} D.~E. KNUTH   The \TeX{}book  the American
-  Mathematical Society and Addison-Wesley
-  Publishing Company , 1984-1986.
-  \bibitem{2}Lamport, Leslie,  \LaTeX{}: `` A Document Preparation System '',
-  Addison-Wesley Publishing Company, 1986.
-  \bibitem{3}\url{http://www.latexstudio.net/}
-  \bibitem{4}\url{http://www.chinatex.org/}
-\end{thebibliography}
-
-\begin{appendices}
-
-  \section{First appendix}
-
-  \lipsum[13]
-
-  Here are simulation programmes we used in our model as follow.\\
-
-  \textbf{\textcolor[rgb]{0.98,0.00,0.00}{Input matlab source:}}
-  \lstinputlisting[language=Matlab]{./code/mcmthesis-matlab1.m}
-
-  \section{Second appendix}
-
-  some more text \textcolor[rgb]{0.98,0.00,0.00}{\textbf{Input C++ source:}}
-  \lstinputlisting[language=C++]{./code/mcmthesis-sudoku.cpp}
-
-\end{appendices}
 \end{document}
 
 %% 
