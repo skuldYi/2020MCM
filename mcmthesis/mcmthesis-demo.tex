@@ -165,20 +165,6 @@ We did the following to sanitize the data set:
 
 We remove the reviews which have not been verified because we consider that reviews from those who have not bought the product are unreliable. Besides, we find that those people commit a more low rating (1 star or two stars) than those are verified purchases. We speculate that slander from competitors may be one of the reasons for this phenomenon.
 
-\begin{figure}[h]
-  \small
-  \centering
-  \includegraphics[width=12cm]{notbuy-micro.png}
-  \caption{ratings for the microwave}
-\end{figure}
-
-\begin{figure}[h]
-  \small
-  \centering
-  \includegraphics[width=12cm]{notbuy-dryer.png}
-  \caption{ratings for the hair-dryer}
-\end{figure}
-
 \section{Assumptions}
 \begin{itemize}
   \item Merchant's purpose: Guide users to buy products with quality reviews and recent reviews.
@@ -388,10 +374,37 @@ It can be found from the figure that, after the first year, due to the increase 
 \begin{figure}[h]
   \small
   \centering
-  \includegraphics[width=15cm]{hair_dryer.png}
+  \includegraphics[width=14cm]{hair_dryer.png}
   \caption{the R of hair dryer}
 \end{figure}
 
+\begin{figure}[h]
+  \small
+  \centering
+  \includegraphics[width=5cm]{micro-1year.png}
+  \caption{the impact of low star ratings}
+\end{figure}
+
+\begin{figure}[h]
+  \small
+  \centering
+  \includegraphics[width=5cm]{revised-R.png}
+  \caption{revised the low star rating}
+\end{figure}
+
+\newpage
+By comparing the low star ratings with the reputation of microwaves throughout a year, we surprisingly found that the amount of low stars in Jan. 2015 made a great impact on the reputation value. Finding the cause in the dataset, we speculated that the following review may cause a decline in reputation.When we removed this review, the reputation of the product was restored.
+
+\begin{itemize}
+\item The handle is attached to the door by two weak screws that bear up against a nonmetallic surface on the door. For my unit, the lower attachment door surface broke within six months and the handle pulled away from the door. 
+I am having a service call take care of it but it looks like a design flaw. Even if I get a replacement door, I expect it will break again in six months. Avoid this model design. ...
+\item star rating: 1
+\item help\_votes: 60, total\_votes: 63
+\item not Amazon Vine member and verified\_purchase
+\end{itemize}
+
+
+\newpage
 \subsection{descriptors of text based reviews \& rating levels}
 We analyze the reviews of the three products by the LDA theme model. The extracted models are divided into five levels according to their emotional meanings, corresponding to 1-5 stars. For each review, the LDA model topic extraction is performed, and the corresponding star rating is calculated by weighting the topic proportion. The Pearson Correlation Coefficient between the star rating and the review score indicates correlation.
 
@@ -404,6 +417,7 @@ We analyze the reviews of the three products by the LDA theme model. The extract
 
 Illustrated by graphs, the correlation coefficient between each star rating and the review score exceeds 0.8, which shows that their similarity is high. However, it can be seen that the similarity of the 3 stars is the lowest among the whole, because the reviews are ambiguous, which leads to a great variation between the star and review semantic recognition scores.
 
+\newpage
 \section{Strengths and Weaknesses}
 \subsection{Strengths}
 \begin{itemize}
